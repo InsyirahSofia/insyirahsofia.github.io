@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nur Insyirah Sofia · e-Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+            background: #f7f9fc;
+            color: #1e2a41;
+            line-height: 1.6;
+        }
+
+        /* ===== SDG THEME: Good Health & Well-being (green/teal) ===== */
+        :root {
+            --sdg-primary: #0d6e4b;
+            --sdg-primary-light: #1a8a5e;
+            --sdg-primary-dark: #0a4d33;
+            --sdg-accent: #38b28c;
+            --sdg-bg-soft: #e6f4ef;
+            --sdg-card-bg: #ffffff;
+            --sdg-shadow: 0 12px 30px rgba(13, 110, 75, 0.10);
+            --sdg-radius: 20px;
+            --sdg-transition: 0.3s cubic-bezier(0.2, 0.9, 0.4, 1);
+        }
+
+        a {
+            color: var(--sdg-primary);
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== STICKY NAV ===== */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(13, 110, 75, 0.12);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 6px 20px;
+            padding: 12px 0;
+        }
+
+        nav a {
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.02em;
+            padding: 6px 4px;
+            border-bottom: 2px solid transparent;
+            transition: var(--sdg-transition);
+            color: #1e2a41;
+        }
+
+        nav a:hover,
+        nav a:focus {
+            border-bottom-color: var(--sdg-primary);
+            color: var(--sdg-primary);
+        }
+
+        /* ===== SECTIONS ===== */
+        section {
+            padding: 60px 0 40px;
+            scroll-margin-top: 80px;
+        }
+
+        section:nth-child(even) {
+            background: var(--sdg-bg-soft);
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            margin-bottom: 32px;
+            display: inline-block;
+            border-left: 6px solid var(--sdg-primary);
+            padding-left: 18px;
+            color: var(--sdg-primary-dark);
+        }
+
+        .section-title.centered {
+            display: block;
+            text-align: center;
+            border-left: none;
+            padding-left: 0;
+        }
+
+        /* ===== HERO / INTRODUCTION ===== */
+        #home {
+            padding-top: 20px;
+        }
+
+        .hero-card {
+            background: linear-gradient(145deg, #ffffff, #f1faf6);
+            border-radius: var(--sdg-radius);
+            padding: 40px 36px;
+            box-shadow: var(--sdg-shadow);
+            border: 1px solid rgba(13, 110, 75, 0.08);
+        }
+
+        .hero-card h1 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: var(--sdg-primary-dark);
+            margin-bottom: 6px;
+        }
+
+        .hero-card .subhead {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #2a3f5a;
+            margin-bottom: 12px;
+        }
+
+        .hero-card .badge-sdg {
+            display: inline-block;
+            background: var(--sdg-primary);
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.85rem;
+            padding: 4px 18px;
+            border-radius: 40px;
+            letter-spacing: 0.02em;
+            margin-bottom: 16px;
+        }
+
+        .hero-card p {
+            font-size: 1.05rem;
+            max-width: 780px;
+            color: #1e2a41cc;
+        }
+
+        /* ===== CARDS (Lab / Project) ===== */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 28px;
+            margin-top: 12px;
+        }
+
+        .card {
+            background: var(--sdg-card-bg);
+            border-radius: var(--sdg-radius);
+            padding: 24px 24px 28px;
+            box-shadow: var(--sdg-shadow);
+            border: 1px solid rgba(0, 0, 0, 0.02);
+            transition: var(--sdg-transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(13, 110, 75, 0.12);
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--sdg-primary-dark);
+            margin-bottom: 4px;
+        }
+
+        .card .sub {
+            font-size: 0.9rem;
+            color: #3f5a7a;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .card .desc {
+            margin: 10px 0 14px;
+            color: #1e2a41dd;
+        }
+
+        .card iframe {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border-radius: 14px;
+            border: none;
+            background: #eef2f7;
+            margin: 8px 0 14px;
+        }
+
+        .card .reflection {
+            background: var(--sdg-bg-soft);
+            padding: 14px 18px;
+            border-radius: 14px;
+            font-size: 0.95rem;
+            margin: 8px 0 16px;
+            border-left: 4px solid var(--sdg-accent);
+            color: #123a2b;
+        }
+
+        .card .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: auto;
+            padding-top: 12px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--sdg-primary);
+            color: #fff;
+            font-weight: 600;
+            padding: 10px 22px;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            transition: var(--sdg-transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: var(--sdg-primary-light);
+            transform: scale(0.97);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--sdg-primary);
+            color: var(--sdg-primary);
+            padding: 8px 20px;
+        }
+
+        .btn-outline:hover {
+            background: var(--sdg-primary);
+            color: #fff;
+        }
+
+        /* ===== SKILLS & RESOURCES ===== */
+        .chip-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 16px;
+            margin-top: 12px;
+        }
+
+        .chip {
+            background: white;
+            border-radius: 60px;
+            padding: 8px 24px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(13, 110, 75, 0.15);
+            color: var(--sdg-primary-dark);
+        }
+
+        .chip i {
+            margin-right: 6px;
+            opacity: 0.7;
+        }
+
+        .resource-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .resource-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .resource-list li::before {
+            content: "▹";
+            color: var(--sdg-primary);
+            font-weight: 700;
+            margin-right: 6px;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--sdg-primary-dark);
+            color: #d9eee6;
+            padding: 28px 0 22px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        footer .container {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        footer a {
+            color: #b3e0cf;
+        }
+
+        footer a:hover {
+            color: #fff;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 700px) {
+            nav a {
+                font-size: 0.85rem;
+                padding: 4px 2px;
+            }
+
+            .hero-card h1 {
+                font-size: 1.9rem;
+            }
+
+            .section-title {
+                font-size: 1.7rem;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-card {
+                padding: 28px 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                gap: 4px 12px;
+            }
+            nav a {
+                font-size: 0.75rem;
+                padding: 4px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav class="container">
+        <a href="#home">Home</a>
+        <a href="#labs">Labs</a>
+        <a href="#projects">Projects</a>
+        <a href="#reflection">Reflection</a>
+        <a href="#skills">Skills</a>
+        <a href="#resources">Resources</a>
+    </nav>
+</header>
+
+<main>
+    <!-- ===== HOME / INTRO ===== -->
+    <section id="home">
+        <div class="container">
+            <div class="hero-card">
+                <span class="badge-sdg">🌱 SDG 3 · Good Health &amp; Well-being</span>
+                <h1>Nur Insyirah Sofia binti Mohiddin</h1>
+                <div class="subhead">A211207 · Software Engineering · Instructor: Mr Nelson</div>
+                <p>
+                    I am a final-year Software Engineering student passionate about building meaningful
+                    mobile experiences that empower people to take charge of their health. 
+                    This e-Portfolio showcases my journey through hands-on mobile development labs and 
+                    two full-fledged projects, all centred around SDG 3 — Good Health and Well-being.
+                </p>
+                <p style="margin-top:10px; font-weight:500;">
+                    <span style="background:var(--sdg-bg-soft); padding:2px 14px; border-radius:60px;">
+                        📱 Kotlin · Jetpack Compose · Room · Firebase · Retrofit · Sensors
+                    </span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== LABS ===== -->
+    <section id="labs">
+        <div class="container">
+            <h2 class="section-title">🧪 Labs</h2>
+            <div class="card-grid">
+
+                <!-- LAB 1 -->
+                <div class="card">
+                    <h3>Lab 1 — UI</h3>
+                    <div class="sub">Compose UI &amp; Layouts</div>
+                    <iframe src="https://www.youtube.com/embed/qgGwO3Kz3Lw" allowfullscreen></iframe>
+                    <div class="reflection">
+                        <strong>Reflection</strong><br>
+                        This lab introduced me to the declarative nature of Jetpack Compose.
+                        I learned how to structure composable functions and build a responsive user interface
+                        using basic layouts, modifiers, and Material Design components.
+                        Understanding the unidirectional data flow was a key takeaway.
+                    </div>
+                </div>
+
+                <!-- LAB 2 -->
+                <div class="card">
+                    <h3>Lab 2 — Interaction</h3>
+                    <div class="sub">State &amp; User Input</div>
+                    <iframe src="https://www.youtube.com/embed/0gcQnQSGM3Y" allowfullscreen></iframe>
+                    <div class="reflection">
+                        <strong>Reflection</strong><br>
+                        I explored state management in Compose by handling user interactions
+                        such as button clicks, text input, and checkbox toggles.
+                        This lab reinforced the concept of hoisting state and using callbacks
+                        to communicate between composables — a pattern I now use daily.
+                    </div>
+                </div>
+
+                <!-- LAB 3 -->
+                <div class="card">
+                    <h3>Lab 3 — Material Design</h3>
+                    <div class="sub">Theming &amp; Components</div>
+                    <iframe src="https://www.youtube.com/embed/u7iSaMKIZ8w" allowfullscreen></iframe>
+                    <div class="reflection">
+                        <strong>Reflection</strong><br>
+                        I applied Material 3 theming and components to create a polished,
+                        consistent UI. Customizing colour schemes and typography helped me
+                        understand how to align an app’s visual identity with its purpose.
+                        I also used surfaces, cards, and navigation bars to improve usability.
+                    </div>
+                </div>
+
+                <!-- LAB 4 -->
+                <div class="card">
+                    <h3>Lab 4 — Navigation</h3>
+                    <div class="sub">Multi-screen Flows</div>
+                    <iframe src="https://www.youtube.com/embed/IwTl_8EqlHY" allowfullscreen></iframe>
+                    <div class="reflection">
+                        <strong>Reflection</strong><br>
+                        This lab taught me how to implement navigation between screens
+                        using the Navigation Component with Compose. I learned to pass
+                        arguments between destinations and manage the back stack,
+                        which became the foundation for both Project 1 and Project 2.
+                    </div>
+                </div>
+
+                <!-- LAB 5 -->
+                <div class="card">
+                    <h3>Lab 5 — Room</h3>
+                    <div class="sub">Local Database</div>
+                    <iframe src="https://www.youtube.com/embed/5V6M0a5t7_g" allowfullscreen></iframe>
+                    <div class="reflection">
+                        <strong>Reflection</strong><br>
+                        I integrated Room Database to persist user data locally.
+                        Defining entities, DAOs, and using coroutines for database operations
+                        gave me confidence in building offline-first features.
+                        This lab was critical preparation for Project 2's persistence layer.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PROJECTS ===== -->
+    <section id="projects" style="background:var(--sdg-bg-soft);">
+        <div class="container">
+            <h2 class="section-title">📁 Projects</h2>
+            <div class="card-grid">
+
+                <!-- PROJECT 1 -->
+                <div class="card">
+                    <h3>📱 Project 1 — LifeTrack</h3>
+                    <div class="sub">Lab 4 + Working Features</div>
+                    <p class="desc">
+                        <strong>Problem:</strong> Many people find it difficult to track their health patterns
+                        accurately without a digital tool, often resulting in inconsistent monitoring and a lack
+                        of reliable history regarding their physical well-being. This manual approach is time‑consuming
+                        and fails to provide clear data‑driven insights.
+                    </p>
+                    <iframe src="https://www.youtube.com/embed/D6EqdlEfYE8" allowfullscreen></iframe>
+                    <div class="reflection">
+                        <strong>Lessons learned</strong><br>
+                        Building LifeTrack from scratch taught me how to structure a multi-screen app
+                        with ViewModel and state hoisting. I learned to design a cohesive user experience
+                        while managing shared state across fragments. 
+                        This project strengthened my understanding of the MVVM pattern and the importance
+                        of separating UI logic from business logic.
+                    </div>
+                    <div class="btn-group">
+                        <a href="https://drive.google.com/drive/folders/1LQ5QQfZfCXPXR-dLc5gEtZzHb37zEzu0?usp=sharing" target="_blank" class="btn">📂 Google Drive</a>
+                    </div>
+                </div>
+
+                <!-- PROJECT 2 -->
+                <div class="card">
+                    <h3>📱 Project 2 — LifeTrack</h3>
+                    <div class="sub">Lab 5 + API + Sensors + Cloud</div>
+                    <p class="desc">
+                        <strong>Problem:</strong> Many people struggle to track their daily health consistently.
+                        They forget to monitor their steps, menstrual cycles, or set health goals.
+                        My app solves this by providing an all‑in‑one health tracking solution that works
+                        both online and offline.
+                    </p>
+                    <iframe src="https://www.youtube.com/embed/YbTU6-u6b_c" allowfullscreen></iframe>
+                    <div class="reflection">
+                        <strong>Lessons learned</strong><br>
+                        Project 2 pushed me to integrate four pillars: Room Database, Firebase Firestore,
+                        Retrofit Web API, and hardware sensors (step counter). 
+                        I learned how to design a resilient app that works offline and syncs to the cloud.
+                        Handling real‑time Firestore updates and sensor lifecycle management were
+                        the most valuable challenges I overcame.
+                    </div>
+                    <div class="btn-group">
+                        <a href="https://drive.google.com/drive/folders/1OfCzB-rDPGQGPBcFxBwMxaaSR6OY4jAE?usp=sharing" target="_blank" class="btn">📂 Google Drive</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== REFLECTION & LEARNING JOURNEY ===== -->
+    <section id="reflection">
+        <div class="container">
+            <h2 class="section-title">🧭 Reflection &amp; Learning Journey</h2>
+            <div style="background:white; border-radius:var(--sdg-radius); padding:32px 32px; box-shadow:var(--sdg-shadow);">
+                <p style="font-size:1.05rem; max-width:780px;">
+                    From the very first Compose UI lab to the final sensor‑driven project, I have grown
+                    tremendously as a mobile developer. I started with basic UI components and gradually
+                    moved to state management, navigation, persistence, networking, and hardware integration.
+                    Each lab built on the previous one, and by the time I reached Project 2, I felt confident
+                    building a complete, production‑ready app with offline support and cloud sync.
+                </p>
+                <p style="font-size:1.05rem; max-width:780px; margin-top:16px;">
+                    The most valuable lesson I learned is that good software design is about more than just
+                    code — it is about understanding the user's context and building solutions that are
+                    intuitive, reliable, and accessible. I am proud of what I built and excited to apply
+                    these skills to real‑world health technology.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SKILLS & TECH STACK ===== -->
+    <section id="skills" style="background:var(--sdg-bg-soft);">
+        <div class="container">
+            <h2 class="section-title">⚡ Skills &amp; Tech Stack</h2>
+            <div class="chip-cloud">
+                <span class="chip">Kotlin</span>
+                <span class="chip">Jetpack Compose</span>
+                <span class="chip">Android SDK</span>
+                <span class="chip">Room Database</span>
+                <span class="chip">Firebase Firestore</span>
+                <span class="chip">Retrofit</span>
+                <span class="chip">Gson</span>
+                <span class="chip">Sensor API</span>
+                <span class="chip">MVVM</span>
+                <span class="chip">StateFlow</span>
+                <span class="chip">Coroutines</span>
+                <span class="chip">Git</span>
+                <span class="chip">GitHub</span>
+                <span class="chip">UI/UX Design</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== RESOURCES ===== -->
+    <section id="resources">
+        <div class="container">
+            <h2 class="section-title">📚 Resources &amp; Acknowledgements</h2>
+            <div style="background:white; border-radius:var(--sdg-radius); padding:28px 32px; box-shadow:var(--sdg-shadow);">
+                <h4 style="margin-bottom:8px;">📦 APIs &amp; Libraries</h4>
+                <ul class="resource-list">
+                    <li><strong>AdviceSlip API</strong> — Free REST API for daily health/life advice</li>
+                    <li><strong>Retrofit</strong> — Type‑safe HTTP client for Android</li>
+                    <li><strong>Gson</strong> — JSON serialization/deserialization</li>
+                    <li><strong>Firebase Firestore</strong> — NoSQL cloud database for real‑time sync</li>
+                    <li><strong>Room</strong> — SQLite abstraction layer for local persistence</li>
+                    <li><strong>Jetpack Compose</strong> — Modern declarative UI toolkit</li>
+                </ul>
+
+                <h4 style="margin-top:24px; margin-bottom:8px;">🤖 AI Assistance Acknowledgement</h4>
+                <ul class="resource-list">
+                    <li>AI tools (GitHub Copilot &amp; ChatGPT) were used as a coding assistant to help with:
+                        <ul style="margin-top:4px; padding-left:24px; color:#1e2a41cc;">
+                            <li>Generating boilerplate code for Room, Retrofit, and Firebase</li>
+                            <li>Debugging sensor lifecycle and permission handling</li>
+                            <li>Structuring this HTML e‑Portfolio</li>
+                            <li>Providing explanations and refining reflection paragraphs</li>
+                        </ul>
+                    </li>
+                    <li>All AI‑generated code was reviewed, tested, and adapted to meet project requirements.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <div class="container">
+        <p>
+            <strong>Nur Insyirah Sofia binti Mohiddin</strong> &middot; A211207 &middot;
+            Software Engineering &middot; Instructor: Mr Nelson
+        </p>
+        <p style="font-size:0.9rem; opacity:0.8;">
+            © 2026 — Built with ♥ for SDG 3: Good Health and Well‑being
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>
